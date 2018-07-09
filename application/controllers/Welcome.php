@@ -18,13 +18,41 @@ class Welcome extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
+
+
+	public function upload(){
+
+        $config['upload_path']      = FCPATH.'files';
+        $config['allowed_types']    = 'gif|png|jpg|jpeg|xlsx';
+        $config['encrypt_name'] = TRUE;
+        $config['max_size']     = 51200;
+
+        $this->load->library('upload', $config);
+
+        $files = array();
+
+        if(count($_FILES)){
+            foreach ($_FILES as $key => $value) {
+                if (!$this->upload->do_upload($key))
+                {
+                 //   die(json_encode(array("error"=>"File size is not more  than 5MB and it only supports png,jpg,gif,jpeg format!")));
+                    die(json_encode(array("error"=>json_encode($this->upload->display_errors()))));
+                }else{
+                    $file_data = $this->upload->data();
+                    $files[] = $file_data['file_name'];
+                }
+            }
+        }
+
+		echo json_encode($files);
+	}
+	
 	public function index()
 	{
-    print_r($_REQUEST);
-    print_r($_FILES);
-    print_r($_POST);
-    print_r($_GET);
+		
+		
 		echo json_encode(['stateCode'=>'200','msg'=>'Welcome to my world!']);
+		
   }
   
   public function error(){

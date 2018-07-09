@@ -314,4 +314,4 @@ switch (ENVIRONMENT)
  */
 require_once BASEPATH.'core/CodeIgniter.php';
 header('Access-Control-Allow-Origin: *'); //解决跨域
-//header('Access-control-Allow-Methods:GET,POST,PUT,DELETE');//可选 远程请求方法控制 （get post put delete ......）
+#header('Access-control-Allow-Methods:GET,POST,PUT,DELETE,OPTIONS');//可选 远程请求方法控制 （get post put delete ......）
