@@ -36,7 +36,7 @@ module.exports = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       // webpack 定义了@字符所代表的路劲前缀
-      '@': resolve('src'),
+      '@': resolve('src')
     }
   },
   module: {

@@ -52,9 +52,9 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
-    // 配置build时的静态目录，上线时在配置
+    // 配置build时的静态目录，设置为网站绝对路径，防止静态文件路径问题，上线时在配置
     // assetsPublicPath: 'http://localhost/demo/app/dist/',
-    assetsPublicPath: '/',
+    assetsPublicPath: 'http://localhost/demo/app/dist/',
 
     /**
      * Source Maps
