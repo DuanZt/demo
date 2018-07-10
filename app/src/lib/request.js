@@ -37,8 +37,6 @@ export default async function request (method, url, query, data, fileFlag) {
     withFile: fileFlag
   }
 
-  console.log(axiosOpt)
-
   if (axiosOpt.withFile) {
     Object.assign(axiosOpt, { headers: {
       'Content-Type': 'multipart/form-data'
@@ -56,7 +54,6 @@ export default async function request (method, url, query, data, fileFlag) {
     // 开始请求
     const result = await axios(axiosOpt)
     // 如果 300 ms 还没到，就取消定时器
-    console.log(result)
     clearTimeout(timer)
     store.dispatch('closeLoading')
 

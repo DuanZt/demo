@@ -312,6 +312,10 @@ switch (ENVIRONMENT)
  *
  * And away we go...
  */
-require_once BASEPATH.'core/CodeIgniter.php';
-header('Access-Control-Allow-Origin: *'); //解决跨域
+
+header('Access-Control-Allow-Origin: *'); 
+//解决跨域,必须放到require_once BASEPATH.'core/CodeIgniter.php'; 之前，不然有时候报错什么，不会带上header信息
+
 #header('Access-control-Allow-Methods:GET,POST,PUT,DELETE,OPTIONS');//可选 远程请求方法控制 （get post put delete ......）
+
+require_once BASEPATH.'core/CodeIgniter.php';
