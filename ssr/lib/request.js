@@ -1,5 +1,6 @@
 import axios from 'axios'
-import config from '../config'
+//import store from '../store'
+import config from './config'
 import {Message} from 'element-ui'
 
 axios.interceptors.request.use(config => {
@@ -45,6 +46,7 @@ export default async function request (method, url, query, data, fileFlag) {
   try {
     // 开始请求
     const result = await axios(axiosOpt)
+    console.log(result)
 
     if (result.status === 200 && result.statusText === 'OK') {
       if (result.data.success) {

@@ -18,6 +18,31 @@ module.exports = {
   */
   loading: { color: '#3B8070' },
   /*
+  全局载入bootstrap-vue
+  */
+  modules: [
+    'bootstrap-vue/nuxt',
+
+    // Or if you have custom bootstrap CSS...
+    ['bootstrap-vue/nuxt', { css: false }],
+  ],
+  /*
+  ** Global CSS
+  */
+  /*
+  全局载入element-ui
+  */
+  css: [
+    'element-ui/lib/theme-chalk/index.css'
+  ],
+
+  /*
+  ** Add element-ui in our app, see plugins/element-ui.js file
+  */
+  plugins: [
+    '@/plugins/element-ui'
+  ],
+  /*
   ** Build configuration
   */
   build: {
