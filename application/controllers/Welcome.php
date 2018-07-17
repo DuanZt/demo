@@ -36,7 +36,10 @@ class Welcome extends CI_Controller {
                 if (!$this->upload->do_upload($key))
                 {
                  //   die(json_encode(array("error"=>"File size is not more  than 5MB and it only supports png,jpg,gif,jpeg format!")));
-                    die(json_encode(array("error"=>json_encode($this->upload->display_errors()))));
+
+                  die(outputJSON(200,$this->upload->display_errors()));
+                  
+                
                 }else{
                     $file_data = $this->upload->data();
                     $files[] = $file_data['file_name'];
@@ -44,18 +47,18 @@ class Welcome extends CI_Controller {
             }
         }
 
-		echo json_encode($files);
+        echo outputJSON(200,$files);
 	}
 	
 	public function index()
 	{
 		
-		
-		echo json_encode(['stateCode'=>'200','msg'=>'Welcome to my world!']);
+    echo outputJSON(200,'Welcome to my world!');
 		
   }
   
   public function error(){
-		echo json_encode(['stateCode'=>'404','msg'=>'Sorry , page not find!']);
+    
+    echo outputJSON(200,'Sorry , page not find!');
   }
 }

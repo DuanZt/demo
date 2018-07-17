@@ -1,4 +1,5 @@
 import axios from 'axios'
+// import store from '../store'
 import config from '../config'
 import {Message} from 'element-ui'
 
@@ -45,9 +46,10 @@ export default async function request (method, url, query, data, fileFlag) {
   try {
     // 开始请求
     const result = await axios(axiosOpt)
+    console.log(result)
 
     if (result.status === 200 && result.statusText === 'OK') {
-      if (result.data.success) {
+      if (result.data.stateCode === 200) {
         return result.data.results || true
       } else {
         // 请求失败的 toast
