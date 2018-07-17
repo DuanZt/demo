@@ -19,6 +19,16 @@ class Welcome extends CI_Controller {
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
 
+	public function __construct()
+	{
+		parent::__construct();
+
+		//$this->load->model('customer_model');
+		//$this->load->helper('url');
+		//$this->load->library('session');
+
+	}
+
 
 	public function upload(){
 
