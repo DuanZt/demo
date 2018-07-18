@@ -3,3 +3,4 @@ ssr/node_modules
 files/*
 files/!.gitkeep
 vendor
+application/config/database.php

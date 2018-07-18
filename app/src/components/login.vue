@@ -1,46 +1,33 @@
 <template>
   <div>
-    <p @click="add" >test store api </p>
     <b-form @submit="onSubmit" @reset="onReset" v-if="show">
-    <input type="file" @change="upload($event)">
-      <b-form-group id="exampleInputGroup1"
-                    label="Email address:"
-                    label-for="exampleInput1"
-                    description="We'll never share your email with anyone else.">
-        <b-form-input id="exampleInput1"
+      <b-form-group id="email-group"
+                    label="Email:"
+                    :class="{error:errors.has('email')}"
+                    label-for="email"
+                    :description="errors.first('email')">
+        <b-form-input id="email"
                       type="email"
                       v-model="form.email"
                       required
+                      v-validate="'required|email'" name="email"
                       placeholder="Enter email">
         </b-form-input>
       </b-form-group>
-      <b-form-group id="exampleInputGroup2"
-                    label="Your Name:"
-                    label-for="exampleInput2">
-        <b-form-input id="exampleInput2"
-                      type="text"
+      <b-form-group id="pwd-group"
+                    label="Password:"
+                    :class="{error:errors.has('pwd')}"
+                    label-for="pwd"
+                    :description="errors.first('pwd')">
+        <b-form-input id="pwd"
+                      type="password"
                       v-model="form.name"
+                      v-validate="{ required: true, regex: pwd_regex }" name="pwd" 
                       required
-                      placeholder="Enter name">
+                      placeholder="Enter password">
         </b-form-input>
       </b-form-group>
-      <b-form-group id="exampleInputGroup3"
-                    label="Food:"
-                    label-for="exampleInput3">
-        <b-form-select id="exampleInput3"
-                      :options="foods"
-                      required
-                      v-model="form.food">
-        </b-form-select>
-      </b-form-group>
-      <b-form-group id="exampleGroup4">
-        <b-form-checkbox-group v-model="form.checked" id="exampleChecks">
-          <b-form-checkbox value="me">Check me out</b-form-checkbox>
-          <b-form-checkbox value="that">Check that out</b-form-checkbox>
-        </b-form-checkbox-group>
-      </b-form-group>
       <b-button type="submit" variant="primary">Submit</b-button>
-      <b-button type="reset" variant="danger">Reset</b-button>
     </b-form>
   </div>
 </template>
@@ -54,50 +41,34 @@ export default {
     return {
       form: {
         email: '',
-        name: '',
-        food: null,
-        checked: []
+        pwd: ''
       },
-      foods: [
-        { text: 'Select One', value: null },
-        'Carrots', 'Beans', 'Tomatoes', 'Corn'
-      ],
+      pwd_regex: /^[0-9a-zA-Z]{8,9}$/, //8-9 ^|$ !!!
       show: true
     }
   },
   methods: {
     ...mapActions({
-      uploadFile: 'uploadFile',
-      add: 'getWelcome' // 将 `this.add()` 映射为 `this.$store.dispatch('increment')`
+      login: 'login'// 将 `this.add()` 映射为 `this.$store.dispatch('increment')`
     }),
     onSubmit (evt) {
-      evt.preventDefault()
-      alert(JSON.stringify(this.form))
-    },
-    upload (evt) {
-      let files = evt.target.files
-      let filesData = new FormData()
-      for (const key in files) {
-        if (files.hasOwnProperty(key)) {
-          const file = files[key]
-          filesData.append('files', file)
-        }
-      }
-      filesData.append('name', 'duanzhangtao')
-      this.uploadFile(filesData)
+      evt.preventDefault();
+      this.login(this.form);
     },
     onReset (evt) {
-      evt.preventDefault()
+      evt.preventDefault();
       /* Reset our form values */
-      this.form.email = ''
-      this.form.name = ''
-      this.form.food = null
-      this.form.checked = []
+      this.form.email = '';
+      this.form.name = '';
       /* Trick to reset/clear native browser form validation state */
-      this.show = false
-      this.$nextTick(() => { this.show = true })
+      this.show = false;
+      this.$nextTick(() => { this.show = true });
     }
-
   }
 }
 </script>
+<style lang="scss" scoped>
+.error input{
+  border-color:red;
+}
+</style>

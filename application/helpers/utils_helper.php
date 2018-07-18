@@ -6,15 +6,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 use \Firebase\JWT\JWT;
 
 
-function outputJSON($stateCode,$results=''){
-  return json_encode(
-    [
-      'stateCode'=>$stateCode,
-      'results'=>$results
-    ]
-  );
-}
-
 function authToken($token){
     $CI =& get_instance();
 
@@ -45,7 +36,7 @@ function generateToken($user_id){
 
     //公用信息
     $token = [
-        'iss' => 'http://www.helloweba.net', //签发者 可选
+    //    'iss' => 'http://www.helloweba.net', //签发者 可选
         'iat' => $time, //签发时间
         'data' => [ //自定义信息，不要定义敏感信息
             'userid' => $user_id,
@@ -71,4 +62,15 @@ function generateToken($user_id){
     return  $jsonList; //返回给客户端token信息
 }
 
+
+
+
+function outputJSON($stateCode,$results=''){
+  return json_encode(
+    [
+      'stateCode'=>$stateCode,
+      'results'=>$results
+    ]
+  );
+}
 

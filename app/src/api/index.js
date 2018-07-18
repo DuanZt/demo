@@ -7,5 +7,8 @@ export default {
   },
   uploadFile (data, cb, errorCb) {
     req('POST', '/api/test', null, data, 1).then(cb).catch(errorCb)
+  },
+  login (data, cb, errorCb) {
+    req('POST', '/front/user', null, data, 1).then(cb).catch(errorCb)
   }
 }

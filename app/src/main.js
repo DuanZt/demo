@@ -8,6 +8,9 @@ import './assets/css'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import BootstrapVue from 'bootstrap-vue'
+import VeeValidate from 'vee-validate';
+
+Vue.use(VeeValidate);
 
 Vue.use(BootstrapVue)
 

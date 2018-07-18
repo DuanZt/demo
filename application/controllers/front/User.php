@@ -12,15 +12,14 @@ class User extends CI_Controller {
 		//$this->load->helper('url');
 		//$this->load->library('session');
 
-    }
+  }
     
-	public function index()
-	{
-		echo json_encode(['stateCode'=>'200','msg'=>generateToken(123)]);
-    }
+	public function index(){
+    echo json_encode(['stateCode'=>'200','results'=>generateToken(123)]);
+  }
 
-    public function auth($token){
-		echo json_encode(['stateCode'=>'200','msg'=>authToken($token)]);
-    }
+  public function auth($token){
+    echo json_encode(['stateCode'=>'200','results'=>authToken($token)]);
+  }
   
 }
