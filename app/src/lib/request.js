@@ -63,3 +63,5 @@ export default async function request (method, url, query, data, fileFlag) {
     return false
   }
 }
+
+// 生成token的时候带上有效时间，前端请求的时候判断时间是否过期，过期的话，用refresh_token 更新token
